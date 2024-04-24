@@ -1,0 +1,12 @@
+.text-center {
+    /* Adjust mask size and position for optimal results */
+    mask-size: 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+  
+  .text-center > * {
+    /* Ensure text elements have a solid white color */
+    color: white;
+  }
+  
