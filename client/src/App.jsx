@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import Home from "./pages/Home";
 import PageNotFound from "./pages/PageNotFound";
 import FileData from "./pages/FileData";
+import Edit from "./pages/Edit";
+import DataVisualization from "./pages/DataVisualization";
 
 function App() {
   const { filePath } = useSelector((state) => state.misc);
@@ -18,6 +20,11 @@ function App() {
           path="/preview"
           element={filePath ? <FileData /> : <Navigate to="/" />}
         />
+        {/* <Route
+          path="/charts"
+          element={filePath ? <DataVisualization /> : <Navigate to="/" />}
+        /> */}
+        <Route path="/charts" element={<DataVisualization />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Toaster position="top-center" />

@@ -18,22 +18,24 @@ const FileData = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${server}/api/v1/file/preview`, {
+      const response = await axios.get(`${server}/dashboard/view/${filePath}`, {
         params: {
           page: page,
-          filePath: filePath,
         },
       });
 
-      if (response.data.success) {
+      // console.log(JSON.parse(response.data));
+      const responseData = response.data.replace(/NaN/g, "null");
+      const jsonData = JSON.parse(responseData);
+      if (jsonData.success) {
         // If it's the first page, set data directly
         if (page === 1) {
-          setCsvData(response.data.data);
-          setTotalPages(Math.ceil(totalRows / 100));
+          setCsvData(jsonData.data);
+          setTotalPages(jsonData.totalPages);
           toast.success("Data fetched successfully");
         } else {
           // If it's not the first page, append new data to existing data
-          setCsvData((prevData) => [...prevData, ...response.data.data]);
+          setCsvData((prevData) => [...prevData, ...jsonData.data]);
         }
       } else {
         console.log(response.data.message);

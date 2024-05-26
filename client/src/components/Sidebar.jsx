@@ -7,22 +7,28 @@ import {
 } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { BsFileEarmarkBarGraph, BsInfoSquare } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { setSideBarOpen } from "../redux/reducer/misc";
 
 const Sidebar = () => {
   const [openMenu, setOpenMenu] = useState(true);
+  const dispatch = useDispatch();
+
+  const { sideBarOpen } = useSelector((state) => state.misc);
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
+    dispatch(setSideBarOpen(!openMenu));
   };
 
   return (
     <div>
       <div
         className={`${
-          openMenu ? "w-72" : "w-full"
+          sideBarOpen ? "w-72" : "w-full"
         } h-full bg-gray-800 flex flex-col`}
       >
-        {openMenu ? (
+        {sideBarOpen ? (
           <>
             <div className="w-full flex m-4 text-3xl text-gray-300">
               <VscGraph className="mt-1" />
@@ -55,22 +61,22 @@ const Sidebar = () => {
             icon={<IoHomeOutline />}
             name="Home"
             toolTipInfo="Home"
-            showName={openMenu}
+            showName={sideBarOpen}
             linkTo={"/"}
           />
           <SidebarButtons
             icon={<VscPreview />}
             name="Preview"
             toolTipInfo="Preview"
-            showName={openMenu}
+            showName={sideBarOpen}
             linkTo={"/preview"}
           />
           <SidebarButtons
             icon={<BsFileEarmarkBarGraph />}
             name="Data Visualization"
             toolTipInfo="Data Visualization"
-            showName={openMenu}
-            linkTo={"/data"}
+            showName={sideBarOpen}
+            linkTo={"/charts"}
           />
         </div>
       </div>

@@ -5,6 +5,7 @@ const initialState = {
   totalRows: null,
   totalColumns: null,
   totalMissingValues: null,
+  sideBarOpen: true,
   columnDetails: {},
 };
 
@@ -27,6 +28,9 @@ const miscSlice = createSlice({
     setColumnDetails: (state, action) => {
       state.columnDetails = action.payload;
     },
+    setSideBarOpen: (state, action) => {
+      state.sideBarOpen = action.payload;
+    },
   },
 });
 
@@ -37,4 +41,5 @@ export const {
   setTotalColumns,
   setTotalMissingValues,
   setColumnDetails,
+  setSideBarOpen,
 } = miscSlice.actions;

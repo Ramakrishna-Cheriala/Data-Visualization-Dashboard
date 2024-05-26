@@ -1,0 +1,14 @@
+asgiref
+Django
+django-cors-headers
+djangorestframework
+djangorestframework-simplejwt
+PyJWT
+pytz
+sqlparser
+python-dotenv
+pandas
+scikit-learn
+matplotlib
+uuid
+numpy
